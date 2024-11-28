@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import {InputField, StarSelections, TextAreaField} from "./InputField";
 import './ReviewForm.css';
 
-const ReviewForm = ({isEditing,BookName,BookAuthor,Rating,Review,Date,onSubmit,onClose}) => {
+const ReviewForm = ({isEditing,BookName,BookAuthor,Rating,Review,date,onSubmit,onClose}) => {
     const [name,setName] = useState(BookName || "");
     const [author,setAuthor] = useState(BookAuthor || "");
     const [rating,setRating] = useState(Rating || 0);
     const [review,setReview] = useState(Review || "");
-    const [date,setDate] = useState(Date || new Date());
+    const [postedDate,setDate] = useState(Date || new Date());
 
     const changeName = (newName) => {
         setName(newName);
@@ -29,7 +29,7 @@ const ReviewForm = ({isEditing,BookName,BookAuthor,Rating,Review,Date,onSubmit,o
                 <div>
                     <InputField value={name} onChange={changeName} type={"text"} name={"Name"} placeholder={"Name of the Book"}/>
                     <InputField value={author} onChange={changeAuthor} type={"text"} name={"Author"} placeholder={"Author's Name"}/>
-                    <StarSelections name={"Rating"} value={0} maximum={5} onChange={changeRating}/>
+                    <StarSelections isEdit={true} name={"Rating"} value={0} maximum={5} onChange={changeRating}/>
                     <TextAreaField value={review} name={"Review"} onChange={changeReview} placeholder={"Enter your review"}/>
                 </div>
                 <div className={'lower-bar'}>

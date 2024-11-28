@@ -117,6 +117,7 @@ label{
 
 .rating-bar{
     padding: 10px;
+    background-color: transparent;
 }
 .rating-bar-title{
     font-size: 15px;
@@ -126,22 +127,95 @@ label{
 .rating-bar-rating{
     display: flex;
     justify-content: space-between;
-    gap:5px;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 .rating-bar-stars{
     display: flex;
     justify-content: space-between;
-    gap: 5px;
+    background-color: transparent;
 
 }
 .rating-bar-stars button{
     aspect-ratio: 1/1;
     padding: 0;
     font-size: 20px;
-    background-color: var(--background_color);
+    background-color: transparent;
+    color: var(--text-color);
+    text-shadow: 0 0 3px #000000AA, 0 0 5px #FFFFFFAA;
     border: none;
 }
 .rating-bar-label{
     font-size: 20px;
     font-weight: 500;
+}
+
+.sub-menu{
+    border-radius: 5px;
+    padding: 5px;
+    left: 100%;
+    width: fit-content;
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.menu-item{
+    display: flex;
+    border-radius: 5px;
+    justify-content: left;
+    flex: 1 1;
+    align-items: center;
+    position: relative;
+    height: 40px;
+    gap: 5px;
+    background: var(--background_color);
+    color: var(--text-color);
+}
+.menu-content{
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    min-height: 40px;
+    gap: 5px;
+}
+.menu-item:hover{
+    background: var(--on_background_color);
+}
+.menu-content #icon{
+    max-height: 30px;
+    aspect-ratio: 1/1;
+    padding: 5px;
+}
+.menu-content #text{
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: left;
+}
+.menu-content #show-sub-menu{
+    flex: 0;
+    transform: rotateZ(180deg);
+}
+.context-menu-button{
+
+
+    border-radius: 20%;
+    position: relative;
+    width: fit-content;
+}
+.context-menu-button:hover{
+    opacity: 1;
+}
+.context-menu-button>button{
+    width: 30px;
+    aspect-ratio: 1/1;
+    background-color: var(--text-color);
+    color: var(--background_color);
+    opacity: 0.2;
+}
+.context-menu-button>button:hover{
+    opacity: 1;
 }

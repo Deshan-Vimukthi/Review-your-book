@@ -1,0 +1,12 @@
+.review-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    background: var(--background_color);
+    color: var(--text-color);
+    justify-content: left;
+    align-content: space-between;
+    padding: 10px;
+    overflow: hidden scroll;
+    width: 100%;
+}
