@@ -1,0 +1,147 @@
+.input-field {
+    position: relative;
+    height: fit-content;
+    padding: 10px;
+    background: var(--background_color);
+    color: var(--text-color);
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.input-container {
+    position: relative;
+    border: var(--text-color) 1px solid;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+    min-width: fit-content;
+    padding: 5px 0 5px 5px;
+    border-radius: 5px;
+}
+.input-container label {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    font-size: 10px;
+    font-weight: bolder;
+    overflow: hidden;
+    background: var(--background_color);
+    color: var(--text-color);
+    border-radius: 5px;
+    transform: translateY(-50%);
+    padding: 5px;
+    max-width: 100%;
+    opacity: 0;
+    z-index: 1000;
+}
+.input-container>input,.input-container>textarea {
+    all: unset;
+    border: none;
+    min-width: calc(100% - 20px);
+    padding: 5px;
+}
+.input-container>textarea{
+    height: 100px;
+}
+.input-container[aria-expanded="true"] label {
+    background: var(--text-color);
+    color: var(--background_color);
+}
+.input-container input::placeholder{
+    color: var(--text-color);
+    opacity: 0.5;
+}
+.input-container input:focus::placeholder{
+    opacity: 0;
+}
+.input-container[aria-expanded=true] input:not(:placeholder-shown),
+.input-container[aria-expanded=true] input:focus {
+    padding: 8px 5px 5px 5px;
+}
+.input-container input:not(:placeholder-shown) + label,
+.input-container input:focus + label{
+    opacity: 1;
+}
+.input-container[aria-invalid=true] input + label{
+    color: var(--alert_color);
+}
+
+.input-container textarea::placeholder{
+    color: var(--text-color);
+    opacity: 0.5;
+}
+.input-container textarea:focus::placeholder{
+    opacity: 0;
+}
+.input-container[aria-expanded=true] textarea:not(:placeholder-shown),
+.input-container[aria-expanded=true] textarea:focus {
+    padding: 8px 5px 5px 5px;
+}
+.input-container textarea:not(:placeholder-shown) + label,
+.input-container textarea:focus + label{
+    opacity: 1;
+}
+.input-container[aria-invalid=true] textarea + label{
+    color: var(--alert_color);
+}
+label{
+    font-size: 18px;
+}
+.suggest-list{
+    background: var(--background_color);
+    color: var(--text-color);
+    position: absolute;
+    padding: 10px;
+    top: 100%;
+    width: 100%;
+    border: 1px solid var(--background_color);
+    box-shadow: 1px 1px 10px var(--text-color);
+    margin: 2px;
+    border-radius: 5px;
+    z-index: 10;
+}
+.suggest-list-item{
+    padding: 5px;
+    text-align: left;
+}
+.suggest-list-item:hover{
+    background: var(--text-color);
+    color: var(--background_color);
+    font-weight: 700;
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+
+.rating-bar{
+    padding: 10px;
+}
+.rating-bar-title{
+    font-size: 15px;
+    padding: 5px;
+    font-weight: 500;
+}
+.rating-bar-rating{
+    display: flex;
+    justify-content: space-between;
+    gap:5px;
+}
+.rating-bar-stars{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+
+}
+.rating-bar-stars button{
+    aspect-ratio: 1/1;
+    padding: 0;
+    font-size: 20px;
+    background-color: var(--background_color);
+    border: none;
+}
+.rating-bar-label{
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -1,0 +1,122 @@
+.expandable-button{
+    border: 2px solid var(--background_color);
+    border-radius: 5px;
+    font-weight: 700;
+    background: var(--on_text_color);
+    color: var(--text-color);
+}
+/* Expandable Button*/
+
+.expandable-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}
+.expandable-button>button label{
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: left;
+}
+.expandable-button div{
+    display: flex;
+    font-weight: 700;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+}
+.expandable-button-list{
+    border-radius: 0;
+    color: var(--text-color);
+    background: var(--background_color);
+    margin-left: 2px;
+    padding: 5px;
+    width: 200px;
+}
+.expandable-button-list:hover{
+    background: var(--on_background_color);
+    color: var(--text-color);
+}
+.expandable-button-list[aria-selected=true]{
+    border: var(--text-color) solid;
+    font-weight: 700;
+    border-width: 0 0 0 5px;
+    color: var(--text-color);
+    border-radius: 0;
+    background: var(--background_color);
+}
+
+/* Context Menu*/
+.context-menu{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    max-height: 50vh;
+    width: fit-content;
+    background-color: var(--background_color);
+    z-index: 10000;
+    box-shadow: 0 2px 5px var(--text-color);
+}
+.context-menu[aria-expanded=true]{
+    display: block;
+}
+.context-menu[aria-expanded=false]{
+    display: none;
+}
+.error{
+    border: var(--alert_color) 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.expandable-button-container{
+    position: relative;
+}
+.header{
+    position: relative;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--text-color);
+    flex-wrap: wrap;
+}
+.header-title{
+    display: flex;
+    order: 1;
+}
+.header-logo{
+    background-color: var(--background_color);
+    color: var(--text-color);
+    max-height: 100%;
+    font-size: 25px;
+    border: 2px var(--text-color) solid;
+    border-radius: 0 50% 50% 0;
+    padding: 0 10px 0 5px;
+    justify-items: center;
+    vertical-align: center;
+    font-family: 'Roboto Slab', serif;
+}
+.header-name{
+    font-family: 'Roboto Slab', serif;
+    text-wrap: avoid;
+    overflow: hidden;
+    height: 100%;
+    color: var(--background_color);
+    font-size: 20px;
+    padding:  5px 5px 5px 10px;
+}
+.header-button {
+    display: flex;
+    width: min(400px,100%);
+    order: 2;
+    justify-content: flex-end;
+    gap: 5px;
+    align-items: center;
+    padding-right: 10px;
+}
