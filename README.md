@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Book Review App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React-based Book Review application that allows users to create, edit, and delete book reviews. The app also includes sorting functionalities for filtering reviews by date and rating.
 
-## Available Scripts
+## Features
+* Create Review: Users can write a review for a book, including the book's name, author, rating, and their review.
+* Edit Review: Users can edit their previously written reviews.
+* Delete Review: Users can delete a review they no longer wish to keep.
+* Sorting: Reviews can be sorted by:
+      - Latest to Oldest
+      - Oldest to Latest
+      - Highest to Lowest Rating
+      - Lowest to Highest Rating
+* Context Menu: Each review card has a context menu to allow editing and deletion of reviews.
 
-In the project directory, you can run:
+# Components
 
-### `npm start`
+## ReviewForm
+This component is used for writing or editing reviews. It includes input fields for the book name, author, rating, and the review itself.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Props:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- isEditing (boolean): Whether the form is being used to edit an existing review.
+- id (string): The unique ID of the review (used when editing or deleting).
+- BookName (string): The name of the book for editing.
+- BookAuthor (string): The name of the author for editing.
+- Rating (number): The rating of the book (out of 5) for editing.
+- Review (string): The review text for editing.
+- date (string): The date the review was posted.
+- onSubmit (function): Callback function to handle form submission.
+- onClose (function): Callback function to handle closing the review form.
 
-### `npm test`
+## ReviewTemplate
+This component displays a single review. It shows the book name, author, rating, review text, and a context menu for editing or deleting the review.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Props:
 
-### `npm run build`
+- id (string): The unique ID of the review.
+- BookName (string): The name of the book.
+- Author (string): The author of the book.
+- Rating (number): The rating of the book (out of 5).
+- date (string): The date when the review was posted.
+- Review (string): The review text.
+- onEdit (function): Callback function to handle review editing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## MainPage
+This component is the main page that holds all the reviews and provides the functionality to add, edit, and delete reviews. It also includes sorting options to filter the reviews based on the selected criteria (date or rating).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Props:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- filter (string): The current filter for sorting reviews (values: "Latest", "Oldest", "Positive", "Negative").
+  
+## InputField, TextAreaField, StarSelections
+These components are used for rendering various types of form inputs:
 
-### `npm run eject`
+- InputField renders an input field for text-based input.
+- TextAreaField renders a larger text area for reviews.
+- StarSelections renders a rating system using stars that can be clicked to select a rating from 1 to 5.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ContextMenuButton and MenuItem
+These components are used to create the context menu for editing and deleting reviews. They allow for a responsive menu to appear when the user interacts with a review.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Setup
+To run this project locally, follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone this repository:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/your-username/book-review-app.git
+```
 
-## Learn More
+2. Navigate to the project folder:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd book-review-app```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install the required dependencies:
 
-### Code Splitting
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4.Start the development server:
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
+Open http://localhost:3000 in your browser to view the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Dependencies
+* axios: Used for making API requests to fetch, add, update, and delete reviews.
+* react: A JavaScript library for building user interfaces.
+* react-dom: The DOM bindings for React.
+* react-scripts: Provides scripts and configuration for React apps.
 
-### Making a Progressive Web App
+# API Endpoints
+The app interacts with the following API endpoints:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- GET /reviews: Fetch all reviews.
+- POST /reviews/add_review: Add a new review.
+- PUT /reviews/update/:id: Update an existing review by ID.
+- DELETE /reviews/delete/:id: Delete a review by ID.
 
-### Advanced Configuration
+# License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details.
