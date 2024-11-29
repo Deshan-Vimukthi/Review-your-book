@@ -18,9 +18,7 @@ const months={
     DEC:'Dec',}
 
 const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
-
-    const postedDate = date || new Date();
-
+    const postedDate = new Date(date) || new Date();
     const getDate = ()=>{
         const today = new Date();
         if(postedDate.getFullYear() === today.getFullYear()){
@@ -30,16 +28,16 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
                         if(postedDate.getMinutes() === today.getMinutes()){
                             return 'Just Now'
                         }else{
-                            const time = `${postedDate.getMinutes() - today.getMinutes}`;
-                            return `${time.padStart(2,"0")}m ago`;
+                            const time = `${today.getMinutes() - postedDate.getMinutes()}`;
+                            return `${time.padStart(2,"0")} m ago`;
                         }
                     }
                     else{
-                        const time = `${postedDate.getHours() - today.getHours()}`;
+                        const time = `${today.getHours() - postedDate.getHours()}`;
                         if(postedDate.getHours() - today.getHours() < 12)
-                            return `${time.padStart(2,"0")}h ago`;
+                            return `${time.padStart(2,"0")} h ago`;
                         else {
-                            const ampm = (postedDate.getHours()>=12)?'PM':'AM';
+                            const ampm = (postedDate.getHours()>=12)?' PM':' AM';
                             const hour = (postedDate.getHours()===0)?12:postedDate.getHours();
                             return `${hour.toString().padStart(2,"0")}:${postedDate.getMinutes().toString().padStart(2,"0")} ${ampm}`
                         }
@@ -47,7 +45,7 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
                 }
                 else {
                     const time = `${postedDate.getHours() - today.getHours()}`;
-                    return `${time.padStart(2,"0")}d ago`;
+                    return `${time.padStart(2,"0")} d ago`;
                 }
             }else{
                 return `${months[postedDate.getMonth()]} ${postedDate.getDay()}`;
@@ -56,9 +54,6 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
             return `${months[postedDate.getMonth()]} ${postedDate.getDay()} of ${postedDate.getFullYear()}`;
         }
     }
-
-
-
     const editReview=()=>{
         const review = {
             id:id,
@@ -81,7 +76,6 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
                 console.error('Error deleting review:', error);
             });
     }
-
     const ContextMenu = ()=>{
         return(
             <div className='review-template-edit-button'>
@@ -92,7 +86,6 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
             </div>
         );
     }
-
     return(
         <div className="card">
             <div>

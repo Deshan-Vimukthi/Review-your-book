@@ -91,7 +91,7 @@ const MainPage =({filter})=>{
                         id={item._id}
                         BookName={item.BookName}
                         Author={item.BookAuthor}
-                        date={item.postedDate}
+                        date={item.Date}
                         Review={item.Review}
                         Rating={item.Rating}
                         onEdit={editReview}/>

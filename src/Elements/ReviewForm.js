@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {InputField, StarSelections, TextAreaField} from "./InputField";
 import './ReviewForm.css';
-import axios from "axios";
 import api from "../API";
 
 const ReviewForm = ({isEditing,id,BookName,BookAuthor,Rating,Review,date,onSubmit,onClose}) => {
@@ -9,7 +8,7 @@ const ReviewForm = ({isEditing,id,BookName,BookAuthor,Rating,Review,date,onSubmi
     const [author,setAuthor] = useState(BookAuthor || "");
     const [rating,setRating] = useState(Rating || 1);
     const [review,setReview] = useState(Review || "");
-    const [postedDate,setDate] = useState(date || new Date());
+    const postedDate = new Date(date) || new Date();
     const [errors, setErrors] = useState({
         name: "",
         author: "",

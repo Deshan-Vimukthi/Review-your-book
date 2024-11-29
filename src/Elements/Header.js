@@ -23,7 +23,7 @@ const Header = ({filter,onChangeFilter})=>{
                     <i className="fa fa-book" aria-hidden="true"></i>
                 </div>
                 <div className={'header-name'}>
-                    {`${process.env.APP_NAME}process.env.APP_NAME`}
+                    Review Your Book
                 </div>
             </div>
             <div className={'header-button'}>
