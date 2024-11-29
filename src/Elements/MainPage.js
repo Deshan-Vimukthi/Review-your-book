@@ -66,22 +66,25 @@ const MainPage =({filter})=>{
     }
 
 
-    useEffect(() => {
+    const fetchReviews = async () => {
         api
             .get('/reviews') // Matches your GET route
             .then((response) => {
                 setReviews(response.data);
-            })
+            }).finally(()=>sort())
             .catch((error) => {
                 console.error('Error fetching reviews:', error);
             });
+    };
 
-        sort();
-    }, []);
+    useEffect(() => {
+        fetchReviews().then();
+        const intervalId = setInterval(fetchReviews, 2000); // Poll every 5 seconds
+        return () => clearInterval(intervalId);
+    }, [filter]);
 
     return(
         <div>
-
             <div className='review-container'>
                 {reviews.map((item,key)=>(
                     <ReviewTemplate

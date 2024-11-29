@@ -94,8 +94,7 @@ const ReviewForm = ({isEditing,id,BookName,BookAuthor,Rating,Review,date,onSubmi
             Date: new Date().toString(),
         };
 
-        api
-            .post('/reviews/add_review', newReview)
+        api.post('/reviews/add_review', newReview)
             .then((response) => {
                 console.log('Review created:', response.data);
             })

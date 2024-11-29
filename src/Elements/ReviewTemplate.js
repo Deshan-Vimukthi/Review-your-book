@@ -1,12 +1,25 @@
 import {ContextMenuButton, MenuItem,StarSelections} from "./InputField";
 import './ReviewTemplate.css';
-import axios from "axios";
 import api from "../API";
+
+
+const months={
+    JAN:'Jan',
+    FEB:'Feb',
+    MAR:'Mar',
+    APR:'Apr',
+    MAY:'May',
+    JUN:'Jun',
+    JUL:'Jul',
+    AUG:'Aug',
+    SEP:'Sep',
+    OCT:'Oct',
+    NOV:'Nov',
+    DEC:'Dec',}
 
 const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
 
     const postedDate = date || new Date();
-
 
     const getDate = ()=>{
         const today = new Date();
@@ -25,7 +38,11 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
                         const time = `${postedDate.getHours() - today.getHours()}`;
                         if(postedDate.getHours() - today.getHours() < 12)
                             return `${time.padStart(2,"0")}h ago`;
-                        else return `${postedDate.getHours().toString().padStart(2,"0")}:${postedDate.getMinutes().toString().padStart(2,"0")}`
+                        else {
+                            const ampm = (postedDate.getHours()>=12)?'PM':'AM';
+                            const hour = (postedDate.getHours()===0)?12:postedDate.getHours();
+                            return `${hour.toString().padStart(2,"0")}:${postedDate.getMinutes().toString().padStart(2,"0")} ${ampm}`
+                        }
                     }
                 }
                 else {
@@ -33,17 +50,20 @@ const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
                     return `${time.padStart(2,"0")}d ago`;
                 }
             }else{
-                return `${postedDate.getDay()} of ${postedDate.getFullYear()}`;
+                return `${months[postedDate.getMonth()]} ${postedDate.getDay()}`;
             }
         }else {
-            return `${postedDate.getDay()} of ${postedDate.getFullYear()}`;
+            return `${months[postedDate.getMonth()]} ${postedDate.getDay()} of ${postedDate.getFullYear()}`;
         }
     }
+
+
+
     const editReview=()=>{
         const review = {
             id:id,
             BookName:BookName,
-            Author:Author,
+            BookAuthor:Author,
             Rating:Rating,
             Date:postedDate.toString(),
             Review:Review,

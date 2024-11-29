@@ -69,6 +69,10 @@ export const StarSelections = ({isEdit,name,value,maximum,onChange})=>{
         }
     }
 
+    useEffect(() => {
+        select(value);
+    }, [value]);
+
     return(
         <div className={'rating-bar'}>
             <div className={'rating-bar-title'}>{name}</div>
