@@ -1,7 +1,6 @@
 .card {
     position: relative;
     min-width: 250px;
-    max-width: 300px;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: fit-content;

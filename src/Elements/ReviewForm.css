@@ -1,5 +1,6 @@
 .popup-form{
     width: clamp(300px,100%,500px);
+    background-color: var(--background_color);
     height: auto;
     position: absolute;
     top: 50%;

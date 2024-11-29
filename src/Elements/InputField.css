@@ -163,6 +163,7 @@ label{
 }
 .menu-item{
     display: flex;
+    cursor: pointer;
     border-radius: 5px;
     justify-content: left;
     flex: 1 1;
@@ -183,7 +184,8 @@ label{
     gap: 5px;
 }
 .menu-item:hover{
-    background: var(--on_background_color);
+    background: var(--text-color);
+    color: var(--background_color);
 }
 .menu-content #icon{
     max-height: 30px;
@@ -218,4 +220,11 @@ label{
 }
 .context-menu-button>button:hover{
     opacity: 1;
+}
+
+.error-label {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-left: 10px;
 }

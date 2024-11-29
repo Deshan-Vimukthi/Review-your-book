@@ -1,10 +1,12 @@
 import {ContextMenuButton, MenuItem,StarSelections} from "./InputField";
 import './ReviewTemplate.css';
-import {useState} from "react";
+import axios from "axios";
+import api from "../API";
 
-const ReviewTemplate = ({BookName,Author,Rating,date,Review})=>{
+const ReviewTemplate = ({id,BookName,Author,Rating,date,Review,onEdit})=>{
 
     const postedDate = date || new Date();
+
 
     const getDate = ()=>{
         const today = new Date();
@@ -37,13 +39,35 @@ const ReviewTemplate = ({BookName,Author,Rating,date,Review})=>{
             return `${postedDate.getDay()} of ${postedDate.getFullYear()}`;
         }
     }
+    const editReview=()=>{
+        const review = {
+            id:id,
+            BookName:BookName,
+            Author:Author,
+            Rating:Rating,
+            Date:postedDate.toString(),
+            Review:Review,
+        }
+
+        onEdit(review);
+    }
+    const deleteReview = ()=>{
+        api
+            .delete(`/reviews/delete/${id}`) // Matches your DELETE route
+            .then(() => {
+                console.log('Review deleted');
+            })
+            .catch((error) => {
+                console.error('Error deleting review:', error);
+            });
+    }
 
     const ContextMenu = ()=>{
         return(
             <div className='review-template-edit-button'>
                 <ContextMenuButton icon={<i className="fa fa-ellipsis-v" aria-hidden="true"></i>} alt={'Edit Course'} className={'course-edit-menu'}>
-                    <MenuItem icon={<i className={'fa fa-pencil-square-o'}/>} text={'Edit'}/>
-                    <MenuItem icon={<i className={'fa fa-trash'}/>} text={'Remove'}/>
+                    <MenuItem icon={<i className={'fa fa-pencil-square-o'}/>} text={'Edit'} onSelect={()=>editReview()}/>
+                    <MenuItem icon={<i className={'fa fa-trash'}/>} text={'Remove'} onSelect={()=>deleteReview()}/>
                 </ContextMenuButton>
             </div>
         );

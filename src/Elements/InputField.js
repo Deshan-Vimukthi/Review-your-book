@@ -1,7 +1,8 @@
 import './InputField.css';
 import {useEffect, useRef, useState} from "react";
 
-export const InputField = ({name,placeholder,type,className,value,onChange,suggestList}) =>{
+export const InputField = ({name,placeholder,type,className,value,onChange,suggestList,alert}) =>{
+
 
     const drawSuggest = () =>{
         if(suggestList && suggestList.length>1){
@@ -16,6 +17,7 @@ export const InputField = ({name,placeholder,type,className,value,onChange,sugge
     }
 
     return(
+        <div>
         <div className={`input-field ${className}`}>
             <div className='input-container'>
                 <input
@@ -24,24 +26,33 @@ export const InputField = ({name,placeholder,type,className,value,onChange,sugge
                     className={`input-field-input`}
                     placeholder={placeholder || name}
                     value={value}
-                    onChange={(e)=>onChange(e.target.value)}/>
+                    onChange={(e)=>onChange(e.target.value)}
+                    aria-errormessage={alert}
+                />
                 <label htmlFor={`${name}-list`}>{placeholder}</label>
                 {drawSuggest()}
             </div>
         </div>
+            {alert && <label className="error-label">{alert}</label>}
+        </div>
     )
 }
 
-export const TextAreaField = ({name,placeholder,className,value,onChange})=>{
+export const TextAreaField = ({name,placeholder,className,value,onChange,alert})=>{
     return(
+        <div>
         <div className={`input-field ${className}`}>
             <div className='input-container'>
                 <textarea
                     placeholder={placeholder || name}
                     value={value}
-                    onChange={(e)=>onChange(e.target.value)}/>
+                    onChange={(e)=>onChange(e.target.value)}
+                    aria-errormessage={alert}
+                />
                 <label htmlFor={`${name}-list`}>{placeholder}</label>
             </div>
+        </div>
+            {alert && <label className="error-label">{alert}</label>}
         </div>
     )
 }
@@ -87,7 +98,6 @@ export const ContextMenu = ({children})=>{
 }
 export const MenuItem = ({text,icon,onSelect,children})=>{
     const [showSubMenu,setShowSubMenu] = useState(false);
-
 
     const menuItemRef = useRef(null);
     const subMenuRef = useRef(null);
